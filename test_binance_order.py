@@ -3,8 +3,8 @@ from binance.client import Client
 from binance.enums import *
 
 # Ortam değişkenlerinden API anahtarlarını al
-api_key = os.environ.get("BINANCE_API_KEY")
-api_secret = os.environ.get("BINANCE_API_SECRET")
+api_key = os.getenv("BINANCE_API_KEY")
+api_secret = os.getenv("BINANCE_API_SECRET")
 
 # Anahtarlar eksikse hata ver
 if not api_key or not api_secret:
