@@ -1,11 +1,6 @@
-# Binance Futures Trading Bot
+# Binance Futures Trading Bot (v2 with TP/SL)
 
-## Kurulum
-1. `.env` dosyasını oluştur ve API bilgilerini gir.
-2. Render'da yeni Web Service aç, bu dosyaları yükle.
-3. TradingView alarm webhook'unu şu şekilde ayarla:
-   - URL: `https://<render-app-name>.onrender.com/webhook`
-   - Mesaj: `{ "signal": "LONG" }` veya `{ "signal": "SHORT" }`
-
-## Not
-Bu temel versiyon sadece işlem açar. TP/SL ve takip mekanikleri bir sonraki aşamada eklenecektir.
+## Özellikler
+- Webhook sinyaliyle pozisyon açar (LONG/SHORT)
+- 4 aşamalı TP yönetimi (%5/%10/%15/%20 ROI)
+- Kademeli stop-loss taşıma
