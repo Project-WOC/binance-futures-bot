@@ -1,22 +1,26 @@
 import os
-from binance.um_futures import UMFutures
+from binance.client import Client
+from binance.enums import *
 
-api_key = os.getenv("BINANCE_API_KEY")
-api_secret = os.getenv("BINANCE_API_SECRET")
+# Ortam değişkenlerinden API anahtarlarını al
+api_key = os.environ.get("BINANCE_API_KEY")
+api_secret = os.environ.get("BINANCE_API_SECRET")
 
-client = UMFutures(key=api_key, secret=api_secret)
+# Anahtarlar eksikse hata ver
+if not api_key or not api_secret:
+    raise ValueError("API key or secret not set!")
 
-def place_test_order():
-    try:
-        response = client.new_order(
-            symbol="TAOUSDT",
-            side="BUY",
-            type="MARKET",
-            quantity=1
-        )
-        print("Order Response:", response)
-    except Exception as e:
-        print("Order Error:", str(e))
+# Binance istemcisini oluştur
+client = Client(api_key, api_secret)
 
-if __name__ == "__main__":
-    place_test_order()
+# Test amaçlı küçük bir işlem aç (futures market)
+try:
+    order = client.futures_create_order(
+        symbol='BTCUSDT',
+        side=SIDE_BUY,
+        type=ORDER_TYPE_MARKET,
+        quantity=0.001
+    )
+    print("Order placed:", order)
+except Exception as e:
+    print("Order Error:", e)
