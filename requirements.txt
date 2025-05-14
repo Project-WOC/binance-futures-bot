@@ -1,4 +1,0 @@
-binance-futures-connector==4.1.0
-gunicorn
-flask
-python-binance
